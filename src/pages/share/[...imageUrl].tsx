@@ -1,8 +1,7 @@
+import { FC } from 'react'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
-import { FC, useEffect, useState } from 'react'
 
 interface Props {
   data: {
@@ -23,12 +22,12 @@ const Page: FC<Props> = ({ data }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content="Share your card on Twitter - Pokebot+" />
         <meta property="twitter:description" content="This card was generated on Pokebot+ from discord." />
-        <meta property="twitter:image" content={`https://cdn.discordapp.com/attachments/${imageUrl}.png`} />
+        <meta property="twitter:image" content={`https://api.axieverse.club/v1/cards/v3/back/anemone/image`} />
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Share your card on Twitter - Pokebot+" />
         <meta property="og:description" content="This card was generated on Pokebot+ from discord." />
-        <meta name="og:image" content={`https://cdn.discordapp.com/attachments/${imageUrl}.png`} />
+        <meta name="og:image" content={`https://api.axieverse.club/v1/cards/v3/back/anemone/image`} />
 
       </Head>
 
