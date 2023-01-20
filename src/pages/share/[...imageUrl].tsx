@@ -28,17 +28,17 @@ const Page: React.FC = () => {
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content="Share your card on Twitter - Pokebot+" />
             <meta name="twitter:description" content="This card was generated on Pokebot+ from discord." />
-            <meta name="twitter:image" content={`https://media.discordapp.net/attachments/${image}.png`} />
+            <meta name="twitter:image" content={`https://cdn.discordapp.com/attachments/${image}.png`} />
 
             {/* Facebook */}
             <meta property="og:type" content="website" />
             <meta property="og:title" content="Share your card on Twitter - Pokebot+" />
             <meta property="og:description" content="This card was generated on Pokebot+ from discord." />
-            <meta name="og:image" content={`https://media.discordapp.net/attachments/${image}.png`} />
+            <meta name="og:image" content={`https://cdn.discordapp.com/attachments/${image}.png`} />
 
           </Head>
 
-          <Image src={`https://media.discordapp.net/attachments/${image}.png`} alt="Shared Image - Pokebot+" width={894} height={636} />
+          <Image src={`https://cdn.discordapp.com/attachments/${image}.png`} alt="Shared Image - Pokebot+" width={894} height={636} />
         </>
       )}
     </>
