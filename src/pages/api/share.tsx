@@ -15,15 +15,19 @@ export default async function handler(
 
   const pokemon = await GeneralEndpoints.getPokemon(query.name as string || '');
 
-  const { image, pokemonName } = await getPokemonImage(
-    query.day as string || '',
-    query.month as string || '',
-    query.username as string || '',
-    query.avatarUrl as string || '',
-    query.lenguage as string || '',
-    pokemon
-  )
+  try {
+    const { image } = await getPokemonImage(
+      query.day as string || '',
+      query.month as string || '',
+      query.username as string || '',
+      query.avatarUrl as string || '',
+      query.lenguage as string || '',
+      pokemon
+    )
 
-  res.writeHead(200, { 'Content-Type': 'image/png' });
-  res.end(image, 'binary');
+    res.writeHead(200, { 'Content-Type': 'image/png' });
+    res.end(image, 'binary');
+  } catch (error) {
+    res.status(500).json(error as Data)
+  }
 }
