@@ -17,26 +17,27 @@ const Page: React.FC = () => {
 
   return (
     <>
+      <Head>
+        <title>Share your card on Twitter - Pokebot+</title>
+        <meta name="description" content="This card was generated on Pokebot+ from discord." />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="Share your card on Twitter - Pokebot+" />
+        <meta property="twitter:description" content="This card was generated on Pokebot+ from discord." />
+        <meta property="twitter:image" content="https://raw.githubusercontent.com/The-Juice-Team/assets/main/thejuiceteam-banner.png" />
+
+        {/* Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Share your card on Twitter - Pokebot+" />
+        <meta property="og:description" content="This card was generated on Pokebot+ from discord." />
+        <meta name="og:image" content="https://raw.githubusercontent.com/The-Juice-Team/assets/main/thejuiceteam-banner.png" />
+
+      </Head>
+
       {image && (
         <>
-          <Head>
-            <title>Share your card on Twitter - Pokebot+</title>
-            <meta name="description" content="This card was generated on Pokebot+ from discord." />
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-
-            {/* Twitter */}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta property="twitter:title" content="Share your card on Twitter - Pokebot+" />
-            <meta property="twitter:description" content="This card was generated on Pokebot+ from discord." />
-            <meta property="twitter:image" content="https://raw.githubusercontent.com/The-Juice-Team/assets/main/thejuiceteam-banner.png" />
-
-            {/* Facebook */}
-            <meta property="og:type" content="website" />
-            <meta property="og:title" content="Share your card on Twitter - Pokebot+" />
-            <meta property="og:description" content="This card was generated on Pokebot+ from discord." />
-            <meta name="og:image" content="https://raw.githubusercontent.com/The-Juice-Team/assets/main/thejuiceteam-banner.png" />
-
-          </Head>
 
           <Image src={`https://cdn.discordapp.com/attachments/${image}.png`} alt="Shared Image - Pokebot+" width={894} height={636} />
         </>
