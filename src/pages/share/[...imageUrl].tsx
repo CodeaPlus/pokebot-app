@@ -26,9 +26,9 @@ const Page: React.FC = () => {
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content="Share your card on Twitter - Pokebot+" />
-            <meta name="twitter:description" content="This card was generated on Pokebot+ from discord." />
-            <meta name="twitter:image" content={`https://cdn.discordapp.com/attachments/${image}.png`} />
+            <meta property="twitter:title" content="Share your card on Twitter - Pokebot+" />
+            <meta property="twitter:description" content="This card was generated on Pokebot+ from discord." />
+            <meta property="twitter:image" content={`https://cdn.discordapp.com/attachments/${image}.png`} />
 
             {/* Facebook */}
             <meta property="og:type" content="website" />
