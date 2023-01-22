@@ -18,15 +18,13 @@ const getPokemon = async (id: number): Promise<Pokemon> => {
       operationPokemon,
       'MyQuery',
       {
-        "where": {
-          "pokemon": { "id": { "_eq": id } }
-        }
+        "where": { "id": { "_eq": id } }
       }
     )
 
-    data.pokemon[0].pokemon.sprites = [{
-      frontDefault: data.pokemon[0].pokemon.sprites[0].front_default,
-      frontShiny: data.pokemon[0].pokemon.sprites[0].front_shiny
+    data.pokemon[0].sprites = [{
+      frontDefault: data.pokemon[0].sprites[0].front_default,
+      frontShiny: data.pokemon[0].sprites[0].front_shiny
     }];
 
     return data.pokemon[0].pokemon;
