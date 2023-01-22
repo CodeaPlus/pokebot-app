@@ -5,12 +5,18 @@ import Image from 'next/image'
 
 interface Props {
   data: {
-    imageUrl: string
+    imageUrl: string,
+    day: string,
+    month: string,
+    username: string,
+    avatarUrl: string,
+    id: string,
+    type: string
   }
 }
 
 const Page: FC<Props> = ({ data }) => {
-  const { imageUrl } = data;
+  const { imageUrl, day, month, username, avatarUrl, id, type } = data;
 
   return (
     <>
@@ -22,12 +28,12 @@ const Page: FC<Props> = ({ data }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content="Share your card on Twitter - Pokebot+" />
         <meta property="twitter:description" content="This card was generated on Pokebot+ from discord." />
-        <meta property="twitter:image" content={`https://api.axieverse.club/v1/cards/v3/back/anemone/image`} />
+        <meta property="twitter:image" content={`https://pokebot.by.ddumst.dev/api/share?day=${day}&month=${month}&username=${username}&avatarUrl=${avatarUrl}&id=${id}&type=${type}`} />
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Share your card on Twitter - Pokebot+" />
         <meta property="og:description" content="This card was generated on Pokebot+ from discord." />
-        <meta name="og:image" content={`https://api.axieverse.club/v1/cards/v3/back/anemone/image`} />
+        <meta name="og:image" content={`https://pokebot.by.ddumst.dev/api/share?day=${day}&month=${month}&username=${username}&avatarUrl=${avatarUrl}&id=${id}&type=${type}`} />
 
       </Head>
 
@@ -37,12 +43,18 @@ const Page: FC<Props> = ({ data }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { imageUrl } = context.query;
+  const { imageUrl, day, month, username, avatarUrl, id, type } = context.query;
 
   return {
     props: {
       data: {
-        imageUrl: (imageUrl as Array<string>).join('/')
+        imageUrl: (imageUrl as Array<string>).join('/'),
+        day,
+        month,
+        username,
+        avatarUrl,
+        id,
+        type
       }
     },
   }
