@@ -1,8 +1,7 @@
 import { Pokemon } from "src/domain/pokemon.interface";
 import { POKEMON_TYPES } from "./pokemon-types";
 
-export const getColor = (pokemon: Pokemon) => {
-  const type = pokemon.types[0].name;
+export const getColor = (type: string) => {
   return POKEMON_TYPES.filter(pokeType => pokeType.name === type)[0].color;
 }
 
@@ -10,8 +9,7 @@ export const getShinyChance = (pokemon: Pokemon) => {
   return pokemon.isShiny ? pokemon.sprites[0].frontShiny || pokemon.sprites[0].frontDefault : pokemon.sprites[0].frontDefault;
 }
 
-export const getPattern = (pokemon: Pokemon) => {
-  const type = pokemon.types[0].name;
+export const getPattern = (type: string) => {
   return `https://raw.githubusercontent.com/ddumst/pokecalendar-bot/master/src/assets/patterns/${type}-pattern.png`;
 }
 

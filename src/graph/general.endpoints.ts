@@ -1,7 +1,6 @@
 import { pokeGraphQL } from "./pokeApi";
 import { operationPokemon } from './graph-queries';
 import { Pokemon } from "@/domain/pokemon.interface";
-import nodeHtmlToImage from 'node-html-to-image';
 
 export interface RequestError {
   response: {
@@ -13,14 +12,14 @@ export interface RequestError {
 
 const getError = ({ title, message, response }: RequestError): RequestError => ({ title, message, response })
 
-const getPokemon = async (name: string): Promise<Pokemon> => {
+const getPokemon = async (id: number): Promise<Pokemon> => {
   try {
     const { data } = await pokeGraphQL(
       operationPokemon,
       'MyQuery',
       {
         "where": {
-          "pokemon": { "name": { "_eq": name } }
+          "pokemon": { "id": { "_eq": id } }
         }
       }
     )

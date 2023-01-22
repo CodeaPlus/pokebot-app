@@ -6,15 +6,12 @@ export const pokeGraphQL = async (
   variables?: Record<string, any>,
   orderBy?: Record<string, any>
 ) => {
-  return axios({
-    url: 'https://api.tiopanda.dev/v1/graphql',
-    method: 'post',
-    data: {
+  return fetch('https://api.tiopanda.dev/v1/graphql', {
+    method: 'POST',
+    body: JSON.stringify({
       query: operationsDoc,
       variables: { ...variables, ...orderBy },
       operationName,
-    }
-  }).then(result => {
-    return result.data;
-  });
+    }),
+  }).then(result => result.json());
 }
