@@ -27,7 +27,7 @@ const getPokemon = async (id: number): Promise<Pokemon> => {
       frontShiny: data.pokemon[0].sprites[0].front_shiny
     }];
 
-    return data.pokemon[0].pokemon;
+    return data.pokemon[0];
   } catch (error) {
     throw getError(error as RequestError)
   }
