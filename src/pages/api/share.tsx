@@ -11,7 +11,9 @@ export default async function handler(
 ) {
   try {
     const { searchParams } = new URL(req.url);
-    const image = searchParams.get('image') || '0';
+    const id = searchParams.get('id') || '0';
+    const user = searchParams.get('user') || '0';
+    const name = searchParams.get('name') || '0';
 
     return new ImageResponse(
       (
@@ -29,7 +31,7 @@ export default async function handler(
             position: 'relative',
           }}
         >
-          <img tw="absolute inset-0" src={image} alt="Pokemon" />
+          <img tw="absolute inset-0" src={`https://cdn.discordapp.com/attachments/${id}/${user}/${name}.png`} alt="Pokemon" />
         </div>
       ),
       {
