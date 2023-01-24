@@ -41,16 +41,34 @@ export const operationPokemonRandom = `
 export const getPokeUserCard = `
   query PokeGet($where: user_cards_bool_exp) {
     userCards: user_cards(where: $where) {
-      attachmentId
-      avatarUrl
-      day
-      discordUserId
-      id
       image
+      discordUserId
+      avatarUrl
+      attachmentId
       month
-      pokemonId
+      id
+      day
       type
       username
+      pokemonId
+      pokemon {
+        flavors {
+          language
+          text
+        }
+        height
+        id
+        name
+        sprites {
+          frontDefault: front_default
+          frontShiny: front_shiny
+        }
+        types {
+          color
+          name
+        }
+        weight
+      }
     }
   }
 `;

@@ -3,7 +3,7 @@ import { GeneralEndpoints } from '@/graph/general.endpoints';
 import { NextRequest } from 'next/server';
 import { ImageResponse } from '@vercel/og';
 import { getColor, getFlavorText, getHeight, getShinyChance, getTypes, getWeight } from '@/utils/pokemon.utils';
-import { getPattern } from '../../utils/pokemon.utils';
+import { getPattern } from '../../../utils/pokemon.utils';
 import chroma from 'chroma-js';
 
 export const config = {
@@ -11,15 +11,15 @@ export const config = {
 };
 
 // Make sure the font exists in the specified path:
-const fontRegular = fetch(new URL('../../assets/fonts/Roboto-Regular.ttf', import.meta.url)).then(
+const fontRegular = fetch(new URL('../../../assets/fonts/Roboto-Regular.ttf', import.meta.url)).then(
   (res) => res.arrayBuffer(),
 );
 
-const fontMedium = fetch(new URL('../../assets/fonts/Roboto-Medium.ttf', import.meta.url)).then(
+const fontMedium = fetch(new URL('../../../assets/fonts/Roboto-Medium.ttf', import.meta.url)).then(
   (res) => res.arrayBuffer(),
 );
 
-const fontBold = fetch(new URL('../../assets/fonts/Roboto-Bold.ttf', import.meta.url)).then(
+const fontBold = fetch(new URL('../../../assets/fonts/Roboto-Bold.ttf', import.meta.url)).then(
   (res) => res.arrayBuffer(),
 );
 
@@ -35,7 +35,13 @@ export default async function handler(
     const attachmentId = searchParams.get('attachmentId') || '0';
 
     const card = await GeneralEndpoints.getUserCard(attachmentId);
-    const pokemon = await GeneralEndpoints.getPokemon(+card.pokemonId);
+    let pokemon = null;
+
+    if (!card.pokemon) {
+      pokemon = card.pokemon;
+    } else {
+      pokemon = await GeneralEndpoints.getPokemon(+card.pokemonId);
+    }
 
     const imageSource = getShinyChance(pokemon)
     const pattern = getPattern(card.type || 'normal')
