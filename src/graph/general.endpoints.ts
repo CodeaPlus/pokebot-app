@@ -1,5 +1,5 @@
 import { pokeGraphQL } from "./pokeApi";
-import { operationPokemon, getPokeUserCard } from './graph-queries';
+import { operationPokemon, getPokeUserCard, operationPokemonRandom } from './graph-queries';
 import { PokeUserCard, Pokemon } from "@/domain/pokemon.interface";
 
 export interface RequestError {
@@ -16,7 +16,7 @@ const getPokemon = async (id: number): Promise<Pokemon> => {
   try {
     const { data } = await pokeGraphQL(
       operationPokemon,
-      'MyQuery',
+      'PokebotQuery',
       {
         "where": { "id": { "_eq": id } }
       }
@@ -28,6 +28,25 @@ const getPokemon = async (id: number): Promise<Pokemon> => {
     }];
 
     return data.pokemon[0];
+  } catch (error) {
+    throw getError(error as RequestError)
+  }
+}
+
+const getRandomPokemon = async (): Promise<Pokemon> => {
+  try {
+    const { data } = await pokeGraphQL(
+      operationPokemonRandom,
+      'PokebotQuery'
+    )
+
+    // TODO: @Panda.dev - Improve this logic in backend
+    data.randomPokemon[0].sprites = [{
+      frontDefault: data.randomPokemon[0].sprites[0].front_default,
+      frontShiny: data.randomPokemon[0].sprites[0].front_shiny
+    }];
+
+    return data.randomPokemon[0];
   } catch (error) {
     throw getError(error as RequestError)
   }
@@ -53,5 +72,6 @@ const getUserCard = async (attachmentId: string): Promise<PokeUserCard> => {
 
 export const GeneralEndpoints = {
   getPokemon,
+  getRandomPokemon,
   getUserCard
 }

@@ -1,5 +1,5 @@
 export const operationPokemon = `
-  query MyQuery($where: pokemon_bool_exp) {
+  query PokebotQuery($where: pokemon_bool_exp) {
     pokemon (where: $where) {
       id
       height
@@ -18,6 +18,22 @@ export const operationPokemon = `
         language
         text
       }
+    }
+  }
+`;
+
+export const operationPokemonRandom = `
+  query PokebotQuery {
+    randomPokemon: random_pokemon {
+      flavors
+      height
+      id
+      isShiny: is_shiny
+      name
+      order
+      sprites
+      types
+      weight
     }
   }
 `;
