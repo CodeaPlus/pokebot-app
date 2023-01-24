@@ -21,7 +21,7 @@ interface Props {
 }
 
 const Page: FC<Props> = ({ data }) => {
-  const { image, day, month, username, avatarUrl, id, type } = data;
+  const { image, day, month, username, avatarUrl, id, type, attachmentId } = data;
 
   const fragmets = image.split('/');
 
@@ -35,12 +35,12 @@ const Page: FC<Props> = ({ data }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content={`${username} Pokmon Card - Pokebot+`} />
         <meta property="twitter:description" content="This card was generated on Pokebot+ from discord." />
-        <meta property="twitter:image" content={`https://pokebot.by.ddumst.dev/api/share?id=${fragmets[4]}&user=${fragmets[5]}&name=${fragmets[6].split('.')[0]}`} />
+        <meta property="twitter:image" content={`https://pokebot.by.ddumst.dev/api/share?attachmentId=${attachmentId}`} />
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${username} Pokmon Card - Pokebot+`} />
         <meta property="og:description" content="This card was generated on Pokebot+ from discord." />
-        <meta name="og:image" content={`https://pokebot.by.ddumst.dev/api/share?id=${fragmets[4]}&user=${fragmets[5]}&name=${fragmets[6].split('.')[0]}`} />
+        <meta name="og:image" content={`https://pokebot.by.ddumst.dev/api/share?attachmentId=${attachmentId}`} />
 
       </Head>
 
