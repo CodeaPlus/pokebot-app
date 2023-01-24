@@ -34,6 +34,19 @@ export interface Type {
   name: string;
 }
 
+export interface PokeUserCard {
+  attachmentId: string,
+  avatarUrl: string,
+  day: number,
+  discordUserId: string,
+  image: string,
+  month: number,
+  pokemonId: string,
+  type: string,
+  username: string,
+  id?: number,
+}
+
 export const languages = [{
   name: "English",
   value: "en"

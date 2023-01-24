@@ -21,3 +21,20 @@ export const operationPokemon = `
     }
   }
 `;
+
+export const getPokeUserCard = `
+  query PokeGet($where: user_cards_bool_exp) {
+    userCards: user_cards(where: $where) {
+      attachmentId
+      avatarUrl
+      day
+      discordUserId
+      id
+      image
+      month
+      pokemonId
+      type
+      username
+    }
+  }
+`;

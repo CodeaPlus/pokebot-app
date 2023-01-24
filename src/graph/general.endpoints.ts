@@ -1,6 +1,6 @@
 import { pokeGraphQL } from "./pokeApi";
-import { operationPokemon } from './graph-queries';
-import { Pokemon } from "@/domain/pokemon.interface";
+import { operationPokemon, getPokeUserCard } from './graph-queries';
+import { PokeUserCard, Pokemon } from "@/domain/pokemon.interface";
 
 export interface RequestError {
   response: {
@@ -33,6 +33,25 @@ const getPokemon = async (id: number): Promise<Pokemon> => {
   }
 }
 
+const getUserCard = async (attachmentId: string): Promise<PokeUserCard> => {
+  try {
+    const { data } = await pokeGraphQL(
+      getPokeUserCard,
+      'PokeGet',
+      {
+        "where": {
+          "attachmentId": { "_eq": attachmentId }
+        }
+      }
+    )
+
+    return data.userCards[0];
+  } catch (error) {
+    throw getError(error as RequestError)
+  }
+}
+
 export const GeneralEndpoints = {
-  getPokemon
+  getPokemon,
+  getUserCard
 }
