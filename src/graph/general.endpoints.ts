@@ -1,5 +1,5 @@
 import { pokeGraphQL } from "./pokeApi";
-import { operationPokemon, getPokeUserCard, operationPokemonRandom } from './graph-queries';
+import { operationPokemon, getPokeUserCard, operationPokemonRandom, operationPokemonDaily } from './graph-queries';
 import { PokeUserCard, Pokemon } from "@/domain/pokemon.interface";
 
 export interface RequestError {
@@ -33,6 +33,31 @@ const getPokemon = async (id: number): Promise<Pokemon> => {
   }
 }
 
+const getDailyPokemon = async (day: number, month: number): Promise<Pokemon> => {
+  try {
+    const { data } = await pokeGraphQL(
+      operationPokemonDaily,
+      'PokebotQuery',
+      {
+        "where": {
+          "day": { "_eq": day },
+          "month": { "_eq": month },
+        }
+      }
+    )
+
+    // TODO: @Panda.dev - Improve this logic in backend
+    data.daily[0].sprites = [{
+      frontDefault: data.daily[0].sprites[0].front_default,
+      frontShiny: data.daily[0].sprites[0].front_shiny
+    }];
+
+    return data.daily[0];
+  } catch (error) {
+    throw getError(error as RequestError)
+  }
+}
+
 const getRandomPokemon = async (): Promise<Pokemon> => {
   try {
     const { data } = await pokeGraphQL(
@@ -47,6 +72,23 @@ const getRandomPokemon = async (): Promise<Pokemon> => {
     }];
 
     return data.randomPokemon[0];
+  } catch (error) {
+    throw getError(error as RequestError)
+  }
+}
+
+const getUserCards = async (limit: number): Promise<PokeUserCard[]> => {
+  try {
+    const { data } = await pokeGraphQL(
+      getPokeUserCard,
+      'PokeGet',
+      {
+        "limit": limit,
+        "order_by": { attachmentId: "desc" }
+      }
+    )
+
+    return data.userCards;
   } catch (error) {
     throw getError(error as RequestError)
   }
@@ -72,6 +114,8 @@ const getUserCard = async (attachmentId: string): Promise<PokeUserCard> => {
 
 export const GeneralEndpoints = {
   getPokemon,
+  getDailyPokemon,
   getRandomPokemon,
+  getUserCards,
   getUserCard
 }
