@@ -54,10 +54,10 @@ const Home = () => {
           backgroundImage: `-webkit-linear-gradient(276deg, ${randomPokemon.data?.types[0].color} 50%, #FFFFFF 80%)`
         }}
       >
-        <div className="container mx-auto flex w-full px-8 py-36 z-10 relative">
-          <div className="flex flex-col w-1/2 h-full justify-center items-start gap-4">
+        <div className="container mx-auto flex flex-col md:flex-row w-full px-8 py-28 md:py-36 z-10 relative">
+          <div className="flex flex-col md:w-1/2 h-full justify-center items-center md:items-start gap-4">
             <MotionContainer
-              className="text-white font-extrabold text-5xl"
+              className="text-white font-extrabold text-3xl md:text-5xl"
               animation={'fadeRight'}
               tag='h1'
             >
@@ -76,15 +76,13 @@ const Home = () => {
               </Link>
             </MotionContainer>
 
-
-
             {(randomPokemon.data?.id || 0) < 10000 && (
-              <div className="absolute left-8 bottom-8 text-[10rem] font-black opacity-25">
+              <div className="absolute left-0 md:left-8 bottom-8 text-[10rem] font-black opacity-25">
                 #{randomPokemon.data?.id}
               </div>
             )}
           </div>
-          <div className="flex w-1/2 h-full justify-center items-center flex-col">
+          <div className="flex md:w-1/2 h-full justify-center items-center flex-col">
             <MotionContainer
               animation="fadeIn"
               delay={0.2}

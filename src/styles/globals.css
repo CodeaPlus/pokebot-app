@@ -118,6 +118,14 @@ a {
   position: relative;
 }
 
+@media(max-width:767px) {
+  #carousel-swiper .swiper-slide {
+    width: 94%;
+    height: auto;
+    position: relative;
+  }
+}
+
 .footer-divier-top {
   position: absolute;
   top: 0;

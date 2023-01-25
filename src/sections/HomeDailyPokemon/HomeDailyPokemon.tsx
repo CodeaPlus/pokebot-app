@@ -25,10 +25,10 @@ const HomeDailyPokemon: FC<Props> = ({ dailyPokemon }) => {
         </svg>
       </div>
 
-      <div className="container mx-auto">
+      <div className="container mx-auto mb-8">
         <div className="flex flex-col items-center justify-center gap-4">
           <MotionContainer
-            className="text-white font-extrabold text-5xl my-8"
+            className="text-white font-extrabold text-5xl my-8 text-center"
             tag="h1"
             animation="fadeIn"
             delay={0.2}
@@ -36,12 +36,12 @@ const HomeDailyPokemon: FC<Props> = ({ dailyPokemon }) => {
             DAILY POKEMON
           </MotionContainer>
 
-          <div className="flex items-center justify-center gap-4">
+          <div className="flex items-center flex-col-reverse md:flex-row justify-center gap-8 md:gap-4">
             <MotionContainer
-              className="rounded-2xl bg-black/60 p-8 text-white text-xl flex flex-col leading-none text-left font-medium w-[30rem] z-20"
+              className="rounded-2xl bg-black/60 p-8 text-white text-xl flex flex-col leading-none text-left font-medium w-[90%] md:w-[30rem] z-20"
               animation={'fadeRight'}
             >
-              <div className="font-black text-[3.5rem] uppercase w-[80%] mb-4">{dailyPokemon.name}</div>
+              <div className="font-black text-4xl md:text-[3.5rem] uppercase w-[80%] mb-4">{dailyPokemon.name}</div>
 
               <div className="flex flex-col">
                 <div className="flex mb-2">
@@ -50,11 +50,11 @@ const HomeDailyPokemon: FC<Props> = ({ dailyPokemon }) => {
                 <div className="flex mb-2">
                   <strong className="mr-2 font-bold">Height:</strong> {getHeight(dailyPokemon)} m
                 </div>
-                <div className="flex mb-2">
+                <div className="flex mb-8">
                   <strong className="mr-2 font-bold">Weight:</strong> {getWeight(dailyPokemon)} kg
                 </div>
 
-                <p className="leading-tight w-[calc(100%-4rem)]">{getFlavorText(dailyPokemon, 'en')}</p>
+                <p className="leading-tight w-full md:w-[calc(100%-4rem)]">{getFlavorText(dailyPokemon, 'en')}</p>
               </div>
             </MotionContainer>
 

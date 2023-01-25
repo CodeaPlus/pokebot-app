@@ -12,7 +12,7 @@ const ServersList: React.FC<Props> = ({ servers }) => {
     <div className="container mx-auto my-16">
       <div className="flex flex-col items-center justify-center gap-4">
         <MotionContainer
-          className="text-black font-extrabold text-5xl my-8"
+          className="text-black font-extrabold text-5xl mt-8 text-center mb-0 md:mb-8"
           tag="h1"
           animation="fadeIn"
           delay={0.2}
@@ -20,7 +20,7 @@ const ServersList: React.FC<Props> = ({ servers }) => {
           WHO USE POKEBOT+?
         </MotionContainer>
         <MotionContainer
-          className="text-black font-extrabold text-xl my-4"
+          className="text-black font-extrabold text-xl my-4 text-center"
           tag="h1"
           animation="fadeIn"
           delay={0.2}
