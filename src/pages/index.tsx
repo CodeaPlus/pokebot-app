@@ -77,7 +77,7 @@ const Home = () => {
             </MotionContainer>
 
             {(randomPokemon.data?.id || 0) < 10000 && (
-              <div className="absolute left-0 md:left-8 bottom-8 text-[10rem] font-black opacity-25">
+              <div className="absolute left-8 bottom-8 text-[8rem] md:text-[10rem] font-black opacity-25">
                 #{randomPokemon.data?.id}
               </div>
             )}
