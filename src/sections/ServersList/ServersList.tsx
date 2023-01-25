@@ -9,7 +9,7 @@ interface Props {
 
 const ServersList: React.FC<Props> = ({ servers }) => {
   return (
-    <div className="container mx-auto my-16">
+    <div className="container mx-auto my-16 overflow-hidden">
       <div className="flex flex-col items-center justify-center gap-4">
         <MotionContainer
           className="text-black font-extrabold text-5xl mt-8 text-center mb-0 md:mb-8"
