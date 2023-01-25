@@ -6,13 +6,14 @@ import { Pokemon } from '@/domain/pokemon.interface'
 import styles from '@/styles/Home.module.css';
 import { getPattern, getTypes, getHeight, getWeight, getFlavorText, getColor } from '@/utils/pokemon.utils';
 import chroma from 'chroma-js';
+import moment from 'moment';
 
 interface Props {
   dailyPokemon: Pokemon
 }
 
 const HomeDailyPokemon: FC<Props> = ({ dailyPokemon }) => {
-  const [date] = useState(new Date())
+  const currentDate = moment().format('MMMM DD');
 
   return (
     <div className="relative pt-[80px] pb-[160px]" style={{ backgroundColor: dailyPokemon.types[0].color, backgroundImage: `url(${getPattern(dailyPokemon.types[0].name)})` }}>
@@ -72,7 +73,7 @@ const HomeDailyPokemon: FC<Props> = ({ dailyPokemon }) => {
         style={{ backgroundColor: chroma(getColor(dailyPokemon.types[0].name || 'normal')).darken(.40).css() }}
         className="flex text-[2rem] items-center justify-center text-white p-8 text-center font-black w-full uppercase z-20"
       >
-        Happy Birthday to all trainers born on {date.getDate()}/{date.getMonth() + 1}!
+        Happy Birthday to all trainers born on {currentDate}!
       </div>
 
       <div className={styles["divider-daily-pokemon-bottom"]}>

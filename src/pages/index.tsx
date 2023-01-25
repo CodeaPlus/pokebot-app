@@ -11,15 +11,17 @@ import { MotionContainer } from '@/components/Motion'
 import HomeCarousel from '@/sections/HomeCarousel'
 import { useState } from 'react'
 import HomeDailyPokemon from '@/sections/HomeDailyPokemon'
+import moment from 'moment';
 
 const inter = Inter({ subsets: ['latin'] })
 
 const Home = () => {
-  const [date] = useState(new Date())
+  const currentDate = moment().date()
+  const currentMonth = moment().month()
 
   const randomPokemon = usePokemonRandom();
   const latestCards = usePokemonLatestCards({ limit: 10 });
-  const dailyPokemon = usePokemonDaily({ day: date.getDay(), month: date.getMonth() + 1 });
+  const dailyPokemon = usePokemonDaily({ day: currentDate, month: currentMonth });
 
   const pokemonName = randomPokemon.data?.name
     .split(" ")
@@ -38,7 +40,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header backgroundColorMobile={randomPokemon.data?.types[0].color || '#FFFFFF'} />
 
       <div
         className="flex w-full h-screen"
@@ -111,12 +113,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const queryClient = new QueryClient();
   let isError = false;
 
-  const date = new Date();
+  const currentDate = moment().date()
+  const currentMonth = moment().month()
 
   try {
     await queryClient.prefetchQuery(['pokemon-random'], GeneralEndpoints.getRandomPokemon);
     await queryClient.prefetchQuery(['pokemon-latest-cards'], () => GeneralEndpoints.getUserCards(10));
-    await queryClient.prefetchQuery(['pokemon-daily'], () => GeneralEndpoints.getDailyPokemon(date.getDate(), date.getMonth() + 1));
+    await queryClient.prefetchQuery(['pokemon-daily'], () => GeneralEndpoints.getDailyPokemon(currentDate, currentMonth));
   } catch (error) {
     isError = true
     context.res.statusCode = (error as RequestError).response?.status;

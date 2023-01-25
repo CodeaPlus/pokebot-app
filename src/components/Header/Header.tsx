@@ -5,7 +5,11 @@ import Image from "next/image";
 import IconHamburger from "../icons/IconHamburger";
 import classNames from 'classnames';
 
-const Header: FC = () => {
+interface Props {
+  backgroundColorMobile: string
+}
+
+const Header: FC<Props> = ({ backgroundColorMobile }) => {
   const router = useRouter()
   const [splitLocation, setLocation] = useState<string[]>(router.asPath.split("/"));
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -41,18 +45,30 @@ const Header: FC = () => {
         <span className="flex items-center" onClick={() => setShowMobileMenu(true)}>
           <IconHamburger style={{ color: "#FFFFFF" }} />
         </span>
-        <div className={classNames(
-          "flex flex-col items-center fixed bg-[#141414] justify-center overflow-hidden z-[999] w-full h-0 top-0 bottom-0 left-0 right-0 transition-all duration-[0.5s]",
-          {
-            "!h-full": showMobileMenu
-          }
-        )}>
-          <span className="absolute top-5 right-7 text-4xl" onClick={closeNav}>&times;</span>
-          <div className="flex flex-col items-center gap-8">
-            <Image src="/images/logo-footer.svg" alt="Juice Team" width={50} height={77} />
+        <div
+          className={classNames(
+            "flex flex-col items-center fixed justify-center overflow-hidden z-[999] w-full h-0 top-0 bottom-0 left-0 right-0 transition-all duration-[0.5s]",
+            {
+              "!h-full": showMobileMenu
+            }
+          )}
+          style={{ backgroundColor: backgroundColorMobile }}
+        >
+          <span className="absolute top-5 right-7 text-4xl text-white" onClick={closeNav}>&times;</span>
+          <div className="flex flex-col items-center gap-8 h-screen py-8">
+            <Link href="/" className="flex gap-2 text-white font-extrabold items-center" onClick={closeNav}>
+              <Image src="/images/pokebot.png" alt="Juice Team" width={35} height={54} />
+              <span>POKEBOT+</span>
+            </Link>
             <ul className="flex flex-col items-center gap-4">
 
             </ul>
+            <Link
+              className={`text-white font-extrabold text-sm mt-auto p-4 rounded-md bg-black/40 uppercase`}
+              href="https://discord.com/api/oauth2/authorize?client_id=1063588337895616622&permissions=8&scope=bot" target={"_blank"}
+            >
+              Install in your server
+            </Link>
           </div>
         </div>
       </div>
