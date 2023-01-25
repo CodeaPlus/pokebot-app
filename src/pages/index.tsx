@@ -12,6 +12,10 @@ import HomeCarousel from '@/sections/HomeCarousel'
 import { useState } from 'react'
 import HomeDailyPokemon from '@/sections/HomeDailyPokemon'
 import moment from 'moment';
+import { DiscordEndpoints } from '@/graph/discord.endpoints'
+import { useDiscordServers } from '@/hooks/useDiscord'
+import ServersList from '@/sections/ServersList'
+import Footer from '@/components/Footer/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +24,7 @@ const Home = () => {
   const currentMonth = moment().month() + 1
 
   const randomPokemon = usePokemonRandom();
+  const discordServers = useDiscordServers();
   const latestCards = usePokemonLatestCards({ limit: 10 });
   const dailyPokemon = usePokemonDaily({ day: currentDate, month: currentMonth });
 
@@ -105,6 +110,10 @@ const Home = () => {
       )}
 
       {dailyPokemon.data && <HomeDailyPokemon dailyPokemon={dailyPokemon.data} />}
+
+      {discordServers.data && <ServersList servers={discordServers.data} />}
+
+      <Footer />
     </>
   )
 }
@@ -117,6 +126,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const currentMonth = moment().month() + 1
 
   try {
+    await queryClient.prefetchQuery(['discord-servers'], DiscordEndpoints.getServers);
     await queryClient.prefetchQuery(['pokemon-random'], GeneralEndpoints.getRandomPokemon);
     await queryClient.prefetchQuery(['pokemon-latest-cards'], () => GeneralEndpoints.getUserCards(10));
     await queryClient.prefetchQuery(['pokemon-daily'], () => GeneralEndpoints.getDailyPokemon(currentDate, currentMonth));

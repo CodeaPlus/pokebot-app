@@ -10,7 +10,7 @@ export interface RequestError {
   message: string
 }
 
-const getError = ({ title, message, response }: RequestError): RequestError => ({ title, message, response })
+export const getError = ({ title, message, response }: RequestError): RequestError => ({ title, message, response })
 
 const getPokemon = async (id: number): Promise<Pokemon> => {
   try {

@@ -117,3 +117,23 @@ a {
   height: var(--carousel-slider-height);
   position: relative;
 }
+
+.footer-divier-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.footer-divier-top svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 70px;
+}
+
+.footer-divier-top .shape-fill {
+  fill: #FFFFFF;
+}
