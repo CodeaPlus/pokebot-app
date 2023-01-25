@@ -41,13 +41,13 @@ const Home = () => {
       <Header />
 
       <div
-        className="flex w-full h-screen relative"
+        className="flex w-full h-screen"
         style={{
           backgroundColor: randomPokemon.data?.types[0].color,
           backgroundImage: `-webkit-linear-gradient(276deg, ${randomPokemon.data?.types[0].color} 50%, #FFFFFF 80%)`
         }}
       >
-        <div className="flex w-full px-8 py-36 z-10">
+        <div className="container mx-auto flex w-full px-8 py-36 z-10 relative">
           <div className="flex flex-col w-1/2 h-full justify-center items-start gap-4">
             <MotionContainer
               className="text-white font-extrabold text-5xl"
