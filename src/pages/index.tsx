@@ -17,7 +17,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Home = () => {
   const currentDate = moment().date()
-  const currentMonth = moment().month()
+  const currentMonth = moment().month() + 1
 
   const randomPokemon = usePokemonRandom();
   const latestCards = usePokemonLatestCards({ limit: 10 });
@@ -114,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   let isError = false;
 
   const currentDate = moment().date()
-  const currentMonth = moment().month()
+  const currentMonth = moment().month() + 1
 
   try {
     await queryClient.prefetchQuery(['pokemon-random'], GeneralEndpoints.getRandomPokemon);
