@@ -14,13 +14,13 @@ const NotFound: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-full h-screen bg-red-700 flex flex-col items-center justify-center gap-8">
+      <div className="w-full h-screen bg-red-700 flex flex-col items-center justify-center gap-4">
         <div className="relative w-full">
-          <h1 className="font-extrabold text-[30rem] leading-none opacity-50 absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 z-1">404</h1>
-          <Image className="relative mx-auto z-10" src="/images/rocket-team-404.png" alt="Rocket Team" width={253} height={493} />
+          <h1 className="font-extrabold text-[14rem] md:text-[30rem] leading-none opacity-50 absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 z-1">404</h1>
+          <Image className="relative mx-auto z-10 w-[150px] md:w-[250px]" src="/images/rocket-team-404.png" alt="Rocket Team" width={253} height={493} />
         </div>
 
-        <h4 className="font-bold text-2xl leading-none text-stone-800">
+        <h4 className="font-bold text-2xl leading-none text-stone-800 text-center">
           <span className="text-white">The Rocket Team</span> has won this time!
         </h4>
 
