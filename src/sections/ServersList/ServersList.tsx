@@ -33,13 +33,12 @@ const ServersList: React.FC<Props> = ({ servers }) => {
               <Image
                 src={`https://cdn.discordapp.com/icons/${server.id}/${server.icon}.png`}
                 alt={server.name}
-                width={64}
-                height={64}
+                width={120}
+                height={120}
+                quality={100}
                 className="rounded-lg w-full"
               />
-              <div className="px-6 py-4">
-                <h2 className="font-medium text-lg mb-2">{server.name}</h2>
-              </div>
+              <h2 className="font-medium text-lg mb-2 py-2 text-center">{server.name}</h2>
             </div>
           ))}
         </div>
