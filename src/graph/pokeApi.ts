@@ -5,7 +5,7 @@ export const pokeGraphQL = async (
   operationName: string,
   variables?: Record<string, any>
 ) => {
-  return fetch('https://api.tiopanda.dev/v1/graphql', {
+  return fetch('https://apipkm.codea.plus/v1/graphql', {
     method: 'POST',
     body: JSON.stringify({
       query: operationsDoc,
